@@ -1,0 +1,16 @@
+numpy
+pandas
+tqdm
+python-dotenv
+requests
+torch
+transformers
+datasets
+scikit-learn
+matplotlib
+seaborn
+psutil
+openai
+google-generativeai
+anthropic
+accelerate
