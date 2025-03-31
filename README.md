@@ -1,6 +1,6 @@
 # Access Log Classification Modeling
-## v0.4
-### Robert Li (Principal Solutions Engineer - APAC)
+## v0.4.1
+### Robert Li
 
 This system analyzes web server access logs to classify traffic as legitimate or illegitimate, distinguishing between human users and bots. It uses machine learning to automate the classification process.
 
