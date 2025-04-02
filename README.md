@@ -1,6 +1,6 @@
 # Access Log Classification Modeling
 ## v0.4.1
-### Robert Li
+### Robert Li 
 
 This system analyzes web server access logs to classify traffic as legitimate or illegitimate, distinguishing between human users and bots. It uses machine learning to automate the classification process.
 
@@ -420,11 +420,14 @@ When using this model for production deployments, consider containerizing your a
 
 This system is designed to handle very large log files by processing data in chunks. For extremely large datasets, consider the following options:
 
-### Batch Processing
+### Memory Optimized Batch Processing
 
-The system will automatically detect whether your system is CUDA enabled, and use the appropriate backend (PyTorch or TensorFlow) for training and inference, or is using MPS for Apple Silicon and appropriately uses the Metal backend and fallback to CPU if memory is insufficient (note that MPS is typically very memory constrained), and if neither are available, will use the CPU by default.
+The system includes memory usage tracking and optimization for handling large datasets and will automatically detect whether your system is CUDA enabled, and use the appropriate backend (PyTorch or TensorFlow) for training and inference, or is using MPS for Apple Silicon and appropriately uses the Metal backend and fallback to CPU if memory is insufficient (note that MPS is typically very memory constrained), and if neither are available, will use the CPU by default.
 
-All scripts support processing data in chunks to minimize memory usage:
+- Processes data in configurable chunks
+- Reports memory usage during processing
+- Cleans up resources after each processing step
+- Uses efficient data structures for large datasets
 
 ```bash
 # Parse large log files with a smaller batch size
@@ -560,33 +563,9 @@ access-log-classification/
     └── figures/                     # Individual chart images
 ```
 
-## Interpreting Results
-
-The classification output includes:
-- **Classification**: legitimate_human, legitimate_bot, illegitimate_human, or illegitimate_bot
-- **Confidence**: A score between 0.0 and 1.0 indicating confidence in the classification
-- **Reasoning**: A brief explanation of why the entry was classified as it was
-
-The time-based summary provides an overview of traffic patterns by hour, showing the distribution of different traffic types over time.
-
-## Advanced Usage
-
-### Custom Feature Engineering
+## Advanced Custom Feature Engineering
 
 You can modify `src/feature_engineering.py` to add custom features specific to your environment.
-
-### Model Selection
-
-Change the base model by using the `--model` parameter in the training step.
-
-## Memory Optimization
-
-The system includes memory usage tracking and optimization for handling large datasets:
-
-- Processes data in configurable chunks
-- Reports memory usage during processing
-- Cleans up resources after each processing step
-- Uses efficient data structures for large datasets
 
 ## Visualizing Results
 
